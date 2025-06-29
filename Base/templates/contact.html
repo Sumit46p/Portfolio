@@ -1,0 +1,200 @@
+{% extends 'base.html' %}
+{% load portfolio_extras %}
+
+{% block title %}Contact - Sumit Upreti Portfolio{% endblock %}
+
+{% block content %}
+<section class="py-5" style="padding: 120px 0; min-height: 100vh; display: flex; align-items: center;">
+    <div class="container">
+        <h1 class="section-title-3d">Let's Create Digital Magic</h1>
+        <div class="text-center mb-5">
+            <p class="lead opacity-75">Ready to transform your ideas into extraordinary digital experiences? Let's connect and build the future together!</p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-success alert-dismissible fade show" role="alert" style="
+                            background: rgba(40, 167, 69, 0.2);
+                            border: 1px solid rgba(40, 167, 69, 0.3);
+                            color: #28a745;
+                            backdrop-filter: blur(10px);
+                            border-radius: 15px;
+                            animation: messageSlideIn 0.5s ease;
+                        ">
+                            <i class="fas fa-check-circle me-2"></i>{{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: brightness(0) invert(1);"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <div class="contact-form-3d">
+                    <div class="text-center mb-5">
+                        <div class="mb-4">
+                            <i class="fas fa-satellite-dish fa-4x" style="background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: satelliteRotate 4s linear infinite;"></i>
+                        </div>
+                        <h3 style="font-family: 'Orbitron', monospace;">Establish Connection</h3>
+                        <p class="lead">Ready to launch your next project? Send me a transmission and let's discuss how we can create something extraordinary together!</p>
+                    </div>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <label for="name" class="form-label">
+                                    <i class="fas fa-user me-2" style="color: #667eea;"></i>Your Name
+                                </label>
+                                <input type="text" name="name" id="name" class="form-control form-control-3d" placeholder="Enter your full name" required>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label for="email" class="form-label">
+                                    <i class="fas fa-envelope me-2" style="color: #667eea;"></i>Email Address
+                                </label>
+                                <input type="email" name="email" id="email" class="form-control form-control-3d" placeholder="your.email@example.com" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="subject" class="form-label">
+                                <i class="fas fa-tag me-2" style="color: #667eea;"></i>Project Type
+                            </label>
+                            <select name="subject" id="subject" class="form-control form-control-3d" required>
+                                <option value="">Select project type...</option>
+                                <option value="Web Development">🌐 Web Development</option>
+                                <option value="Mobile App">📱 Mobile App Development</option>
+                                <option value="UI/UX Design">🎨 UI/UX Design</option>
+                                <option value="E-commerce">🛒 E-commerce Solution</option>
+                                <option value="AI Integration">🤖 AI Integration</option>
+                                <option value="Consultation">💡 Technical Consultation</option>
+                                <option value="Other">🚀 Other</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="message" class="form-label">
+                                <i class="fas fa-comment me-2" style="color: #667eea;"></i>Project Details
+                            </label>
+                            <textarea name="message" id="message" rows="6" class="form-control form-control-3d" placeholder="Tell me about your vision, goals, timeline, and any specific requirements. The more details you provide, the better I can help you!" required></textarea>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn-3d" style="padding: 15px 50px; font-size: 1.1rem;">
+                                <i class="fas fa-paper-plane me-2"></i>Launch Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Information Cards -->
+        <div class="row mt-5">
+            <div class="col-md-4 mb-4">
+                <div class="card-3d text-center h-100">
+                    <div class="mb-3">
+                        <i class="fas fa-envelope fa-3x" style="background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: emailBounce 2s ease-in-out infinite;"></i>
+                    </div>
+                    <h5>Direct Email</h5>
+                    <p class="opacity-75 mb-2">upretysumit@gmail.com</p>
+                    <small class="opacity-50">
+                        <i class="fas fa-clock me-1"></i> Response within 24 hours
+                    </small>
+                    <div class="mt-3">
+                        <a href="mailto:upretysumit@gmail.com?subject=Portfolio%20Inquiry&body=Hi%20Sumit,%0A%0AI%20found%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project.%0A%0ABest%20regards" class="btn-3d btn-sm">
+                            <i class="fas fa-envelope me-1"></i>Send Email
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card-3d text-center h-100">
+                    <div class="mb-3">
+                        <i class="fas fa-phone fa-3x" style="background: var(--secondary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: phoneRing 3s ease-in-out infinite;"></i>
+                    </div>
+                    <h5>Phone Call</h5>
+                    <p class="opacity-75 mb-2">+977 9817925138</p>
+                    <small class="opacity-50">
+                        <i class="fas fa-calendar me-1"></i> Available 9AM–6PM NPT
+                    </small>
+                    <div class="mt-3">
+                        <a href="tel:+9779817925138" class="btn-3d btn-sm">
+                            <i class="fas fa-phone me-1"></i>Call Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card-3d text-center h-100">
+                    <div class="mb-3">
+                        <i class="fas fa-map-marker-alt fa-3x" style="background: var(--cyber-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: locationPulse 2s ease-in-out infinite;"></i>
+                    </div>
+                    <h5>Location</h5>
+                    <p class="opacity-75 mb-2">Kankai-9, Jhapa</p>
+                    <small class="opacity-50">
+                        <i class="fas fa-globe me-1"></i> Available for remote work worldwide
+                    </small>
+                    <div class="mt-3">
+                        <a href="https://www.google.com/maps/place/Kankai+09,+Jhapa,+Nepal/@26.6090867,87.9400865,1360m/data=!3m1!1e3!4m6!3m5!1s0x39e5bb086b815d25:0x4dd1acac8d4acc0b!8m2!3d26.6137653!4d87.9416477!16s%2Fg%2F11v0npd76w?entry=ttu" target="_blank" class="btn-3d btn-sm">
+                            <i class="fas fa-map me-1"></i>View Map
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="row mt-5">
+            <div class="col-lg-10 mx-auto">
+                <div class="card-3d">
+                    <h4 class="mb-4 text-center" style="background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                        <i class="fas fa-question-circle me-2"></i>Frequently Asked Questions
+                    </h4>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <h6><i class="fas fa-clock me-2 text-primary"></i>How long does a typical project take?</h6>
+                            <p class="opacity-75 small">Project timelines vary from 2-12 weeks depending on complexity and scope.</p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <h6><i class="fas fa-dollar-sign me-2 text-primary"></i>What are your rates?</h6>
+                            <p class="opacity-75 small">I offer competitive rates based on project scope. Contact me for a custom quote.</p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <h6><i class="fas fa-handshake me-2 text-primary"></i>Do you work with startups?</h6>
+                            <p class="opacity-75 small">I love helping startups bring their innovative ideas to life.</p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <h6><i class="fas fa-globe me-2 text-primary"></i>Do you work remotely?</h6>
+                            <p class="opacity-75 small">Yes, I work with clients worldwide and am experienced in remote collaboration.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+@keyframes messageSlideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+@keyframes satelliteRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+@keyframes emailBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+@keyframes phoneRing {
+    0%, 100% { transform: rotate(0deg); }
+    10%, 30%, 50%, 70%, 90% { transform: rotate(-10deg); }
+    20%, 40%, 60%, 80% { transform: rotate(10deg); }
+}
+@keyframes locationPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+</style>
+{% endblock %}

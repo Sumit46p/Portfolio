@@ -1,0 +1,408 @@
+{% extends 'base.html' %}
+{% load portfolio_extras %}
+
+{% block content %}
+<!-- Hero Section with Matrix Effect -->
+<section id="home" class="hero-3d">
+    <div class="container">
+        <div class="row align-items-center min-vh-100">
+            <div class="col-lg-6">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        Hi, I'm <span style="background: var(--secondary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Sumit Upreti</span>
+                    </h1>
+                    <h2 class="hero-subtitle typing-text">Django and AI developer</h2>
+                    <p class="hero-description">I craft extraordinary digital experiences that push the boundaries of technology. Specializing in cutting-edge web development, AI integration, and immersive user interfaces that captivate and inspire.</p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <a href="#projects" class="btn-3d">
+                            <i class="fas fa-rocket me-2"></i>Explore My Universe
+                        </a>
+                        <a href="{% url 'contact' %}" class="btn-3d" style="background: var(--cyber-gradient);">
+                            <i class="fas fa-satellite-dish me-2"></i>Connect With Me
+                        </a>
+                    </div>
+                    <div class="mt-4">
+                        <div class="d-flex gap-4 align-items-center">
+                            <div class="text-center">
+                                <div class="h3 mb-0" style="background: var(--neon-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">10+</div>
+                                <small class="opacity-75">Projects</small>
+                            </div>
+                            <div class="text-center">
+                                <div class="h3 mb-0" style="background: var(--neon-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">1+</div>
+                                <small class="opacity-75">Years</small>
+                            </div>
+                            <div class="text-center">
+                                <div class="h3 mb-0" style="background: var(--neon-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">10+</div>
+                                <small class="opacity-75">Happy Clients</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="text-center">
+                    <div class="hero-image-3d" style="width: 400px; height: 400px; margin: 0 auto; position: relative;">
+                        <div style="
+                            width: 100%;
+                            height: 100%;
+                            background: rgba(255, 255, 255, 0.05);
+                            border-radius: 50%;
+                            backdrop-filter: blur(20px);
+                            border: 2px solid var(--glass-border);
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            position: relative;
+                            overflow: hidden;
+                            animation: heroImageFloat 6s ease-in-out infinite;
+                        ">
+                            <div style="
+                                position: absolute;
+                                width: 120%;
+                                height: 120%;
+                                background: conic-gradient(from 0deg, var(--primary-gradient), var(--secondary-gradient), var(--cyber-gradient), var(--primary-gradient));
+                                border-radius: 50%;
+                                animation: heroImageRotate 20s linear infinite;
+                                opacity: 0.3;
+                            "></div>
+                            <i class="fas fa-user-astronaut fa-8x" style="
+                                opacity: 0.8;
+                                background: var(--primary-gradient);
+                                -webkit-background-clip: text;
+                                -webkit-text-fill-color: transparent;
+                                background-clip: text;
+                                position: relative;
+                                z-index: 2;
+                                animation: iconPulse 3s ease-in-out infinite;
+                            "></i>
+                        </div>
+                        <!-- Floating Elements -->
+                        <div style="position: absolute; top: 10%; right: 10%; animation: floatUpDown 4s ease-in-out infinite;">
+                            <i class="fas fa-code" style="font-size: 2rem; color: #667eea; opacity: 0.7;"></i>
+                        </div>
+                        <div style="position: absolute; bottom: 20%; left: 10%; animation: floatUpDown 4s ease-in-out infinite 2s;">
+                            <i class="fas fa-laptop-code" style="font-size: 1.5rem; color: #f5576c; opacity: 0.7;"></i>
+                        </div>
+                        <div style="position: absolute; top: 30%; left: -10%; animation: floatUpDown 4s ease-in-out infinite 1s;">
+                            <i class="fas fa-mobile-alt" style="font-size: 1.8rem; color: #00f5ff; opacity: 0.7;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+@keyframes heroImageFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes heroImageRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes iconPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes floatUpDown {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+}
+</style>
+
+<!-- About Section with Enhanced Animations -->
+<section id="about" class="py-5" style="padding: 100px 0;">
+    <div class="container">
+        <h2 class="section-title-3d">About The Developer</h2>
+        <div class="row">
+            <div class="col-lg-8 mx-auto mb-5">
+                <div class="card-3d text-center">
+                    <div class="mb-4">
+                        <i class="fas fa-brain fa-3x" style="background: var(--cyber-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
+                    </div>
+                    <p class="lead mb-4">I'm a passionate developer and digital architect with over 1 years of experience crafting revolutionary digital solutions. My expertise spans across cutting-edge technologies, from AI-powered applications to immersive web experiences.</p>
+                    <p>When I'm not pushing the boundaries of code, you'll find me exploring emerging technologies, contributing to open-source projects, or mentoring the next generation of developers. I believe in creating technology that not only solves problems but inspires and empowers users.</p>
+                    <div class="mt-4">
+                        <span class="badge me-2" style="background: var(--primary-gradient); padding: 10px 20px; border-radius: 25px;">
+                            <i class="fas fa-award me-2"></i>Certified Developer
+                        </span>
+                        <span class="badge me-2" style="background: var(--secondary-gradient); padding: 10px 20px; border-radius: 25px;">
+                            <i class="fas fa-trophy me-2"></i>Creative
+                        </span>
+                        <span class="badge" style="background: var(--cyber-gradient); padding: 10px 20px; border-radius: 25px;">
+                            <i class="fas fa-star me-2"></i>Top Rated
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card-3d text-center h-100">
+                    <div class="mb-3">
+                        <i class="fas fa-code fa-3x" style="background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: iconBounce 2s ease-in-out infinite;"></i>
+                    </div>
+                    <h4>Clean Architecture</h4>
+                    <p>Building scalable, maintainable applications with modern design patterns, SOLID principles, and cutting-edge frameworks that stand the test of time.</p>
+                    <div class="mt-3">
+                        <small class="opacity-75">
+                            <i class="fas fa-check-circle me-1 text-success"></i>
+                            Microservices • Clean Code • TDD
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card-3d text-center h-100">
+                    <div class="mb-3">
+                        <i class="fas fa-palette fa-3x" style="background: var(--secondary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: iconBounce 2s ease-in-out infinite 0.5s;"></i>
+                    </div>
+                    <h4>UI/UX Mastery</h4>
+                    <p>Creating intuitive, beautiful interfaces that provide exceptional user experiences across all platforms with pixel-perfect precision.</p>
+                    <div class="mt-3">
+                        <small class="opacity-75">
+                            <i class="fas fa-check-circle me-1 text-success"></i>
+                            Figma • Adobe XD • Responsive Design
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card-3d text-center h-100">
+                    <div class="mb-3">
+                        <i class="fas fa-rocket fa-3x" style="background: var(--cyber-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: iconBounce 2s ease-in-out infinite 1s;"></i>
+                    </div>
+                    <h4>Performance Optimization</h4>
+                    <p>Delivering lightning-fast applications with advanced optimization techniques, caching strategies, and modern deployment practices.</p>
+                    <div class="mt-3">
+                        <small class="opacity-75">
+                            <i class="fas fa-check-circle me-1 text-success"></i>
+                            CDN • Caching • Load Balancing
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+@keyframes iconBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+</style>
+
+<!-- Projects Section with Enhanced Cards -->
+<section id="projects" class="py-5" style="padding: 100px 0;">
+    <div class="container">
+        <h2 class="section-title-3d">Featured Innovations</h2>
+        <div class="text-center mb-5">
+            <p class="lead opacity-75">Explore my portfolio of groundbreaking projects that showcase innovation, technical excellence, and creative problem-solving.</p>
+        </div>
+        <div class="row">
+            {% for project in featured_projects %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="project-card-3d">
+                    <div class="project-image-3d d-flex align-items-center justify-content-center position-relative" style="background: var(--primary-gradient); height: 220px;">
+                        {% if project.image %}
+                            <img src="{{ project.image }}" alt="{{ project.title }}" style="width: 100%; height: 100%; object-fit: cover;">
+                        {% else %}
+                            <div class="text-center">
+                                <i class="fas fa-laptop-code fa-4x mb-3" style="color: rgba(255, 255, 255, 0.8);"></i>
+                                <div class="h6 text-white opacity-75">{{ project.title }}</div>
+                            </div>
+                        {% endif %}
+                        <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%); transform: translateX(-100%); transition: transform 0.6s ease;"></div>
+                    </div>
+                    <div class="p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <h5 style="background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">{{ project.title }}</h5>
+                            <span class="badge" style="background: var(--secondary-gradient); border-radius: 15px;">
+                                <i class="fas fa-star"></i>
+                            </span>
+                        </div>
+                        <p class="mb-3 opacity-75">{{ project.description|truncatewords:20 }}</p>
+                        <div class="mb-4">
+                            <div class="d-flex flex-wrap gap-1">
+                                {% for tech in project.technologies|split:',' %}
+                                    <small class="badge" style="background: rgba(255, 255, 255, 0.1); color: white; padding: 5px 10px; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.2);">{{ tech }}</small>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="d-flex gap-2">
+                            {% if project.live_url %}
+                            <a href="{{ project.live_url }}" class="btn-3d btn-sm" target="_blank" style="padding: 10px 20px; font-size: 0.9rem; flex: 1; text-align: center;">
+                                <i class="fas fa-external-link-alt me-1"></i> Live Demo
+                            </a>
+                            {% endif %}
+                            {% if project.github_url %}
+                            <a href="{{ project.github_url }}" class="btn-3d btn-sm" target="_blank" style="background: var(--dark-gradient); padding: 10px 20px; font-size: 0.9rem; flex: 1; text-align: center;">
+                                <i class="fab fa-github me-1"></i> Source
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="card-3d text-center py-5">
+                    <div class="mb-4">
+                        <i class="fas fa-rocket fa-5x" style="background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: rocketFloat 3s ease-in-out infinite;"></i>
+                    </div>
+                    <h3>Launching Amazing Projects</h3>
+                    <p class="lead opacity-75 mb-4">Revolutionary projects are currently in development and will be showcased here soon!</p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="{% url 'contact' %}" class="btn-3d">
+                            <i class="fas fa-bell me-2"></i>Get Notified
+                        </a>
+                        <a href="#skills" class="btn-3d" style="background: var(--cyber-gradient);">
+                            <i class="fas fa-cogs me-2"></i>View Skills
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-5">
+            <a href="{% url 'projects' %}" class="btn-3d" style="padding: 20px 50px; font-size: 1.1rem;">
+                <i class="fas fa-telescope me-2"></i>Explore All Projects
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+@keyframes rocketFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+}
+</style>
+
+<!-- Skills Section with Neon Effects -->
+<section id="skills" class="py-5" style="padding: 100px 0;">
+    <div class="container">
+        <h2 class="section-title-3d">Technical Arsenal</h2>
+        <div class="text-center mb-5">
+            <p class="lead opacity-75">My expertise spans across multiple domains of modern technology stack</p>
+        </div>
+        {% for category, skills in skills_by_category.items %}
+        <div class="mb-5">
+            <h3 class="h4 mb-4 text-center" style="background: var(--secondary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-family: 'Orbitron', monospace;">
+                <i class="fas fa-microchip me-2"></i>{{ category }}
+            </h3>
+            <div class="row">
+                {% for skill in skills %}
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="skill-card-3d">
+                        <div class="mb-3">
+                            <i class="fas fa-code fa-2x" style="background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
+                        </div>
+                        <h5>{{ skill.name }}</h5>
+                        <div class="skill-progress-3d">
+                            <div class="skill-progress-bar-3d" data-percentage="{{ skill.level }}" style="width: 0%;"></div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mt-2">
+                            <small class="opacity-75">{{ skill.level }}%</small>
+                            <small class="badge" style="background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
+                                {% if skill.level >= 90 %}Expert
+                                {% elif skill.level >= 75 %}Advanced
+                                {% elif skill.level >= 50 %}Intermediate
+                                {% else %}Beginner
+                                {% endif %}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% empty %}
+        <div class="card-3d text-center py-5">
+            <div class="mb-4">
+                <i class="fas fa-brain fa-5x" style="background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: brainPulse 2s ease-in-out infinite;"></i>
+            </div>
+            <h3>Loading Skills Matrix...</h3>
+            <p class="lead opacity-75">My technical expertise will be displayed here once the data is loaded.</p>
+        </div>
+        {% endfor %}
+
+        <!-- Additional Skills Showcase -->
+        <div class="row mt-5">
+            <div class="col-md-6 mb-4">
+                <div class="card-3d">
+                    <h5 class="mb-3" style="background: var(--cyber-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                        <i class="fas fa-tools me-2"></i>Development Tools
+                    </h5>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge" style="background: var(--primary-gradient); padding: 8px 15px; border-radius: 20px;">VS Code</span>
+                        <span class="badge" style="background: var(--secondary-gradient); padding: 8px 15px; border-radius: 20px;">Git</span>
+                        <span class="badge" style="background: var(--cyber-gradient); padding: 8px 15px; border-radius: 20px;">Docker</span>
+                        <span class="badge" style="background: var(--neon-gradient); padding: 8px 15px; border-radius: 20px;">AWS</span>
+                        <span class="badge" style="background: var(--primary-gradient); padding: 8px 15px; border-radius: 20px;">Figma</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card-3d">
+                    <h5 class="mb-3" style="background: var(--neon-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                        <i class="fas fa-certificate me-2"></i>Certifications
+                    </h5>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge" style="background: var(--secondary-gradient); padding: 8px 15px; border-radius: 20px;">AWS Certified</span>
+                        <span class="badge" style="background: var(--cyber-gradient); padding: 8px 15px; border-radius: 20px;">Google Cloud</span>
+                        <span class="badge" style="background: var(--primary-gradient); padding: 8px 15px; border-radius: 20px;">Scrum Master</span>
+                        <span class="badge" style="background: var(--neon-gradient); padding: 8px 15px; border-radius: 20px;">Security+</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+@keyframes brainPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+}
+</style>
+
+<!-- Call to Action Section -->
+<section class="py-5" style="padding: 100px 0; background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(245, 87, 108, 0.1) 100%);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card-3d text-center py-5">
+                    <div class="mb-4">
+                        <i class="fas fa-handshake fa-4x" style="background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: handshakeWave 2s ease-in-out infinite;"></i>
+                    </div>
+                    <h3 class="mb-3" style="font-family: 'Orbitron', monospace;">Ready to Build Something Amazing?</h3>
+                    <p class="lead opacity-75 mb-4">Let's collaborate and bring your vision to life with cutting-edge technology and innovative solutions.</p>
+                    <div class="d-flex justify-content-center gap-3 flex-wrap">
+                        <a href="{% url 'contact' %}" class="btn-3d" style="padding: 15px 40px;">
+                            <i class="fas fa-rocket me-2"></i>Start a Project
+                        </a>
+                        <a href="#" class="btn-3d" style="background: var(--cyber-gradient); padding: 15px 40px;">
+                            <i class="fas fa-download me-2"></i>Download Resume
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+@keyframes handshakeWave {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-10deg); }
+    75% { transform: rotate(10deg); }
+}
+</style>
+{% endblock %}

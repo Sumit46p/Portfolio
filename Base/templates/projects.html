@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load portfolio_extras %}
+
+{% block title %}Projects - John Doe Portfolio{% endblock %}
+
+{% block content %}
+<section class="py-5" style="padding: 120px 0;">
+    <div class="container">
+        <h1 class="section-title-3d">Project Universe</h1>
+        <div class="text-center mb-5">
+            <p class="lead opacity-75">Journey through my digital cosmos of innovative projects, each crafted with precision, creativity, and cutting-edge technology.</p>
+        </div>
+
+        <div class="row project-grid">
+            {% for project in projects %}
+            <div class="col-lg-4 col-md-6 mb-5 project-item">
+                <div class="project-card-3d">
+                    <div class="project-image-3d d-flex align-items-center justify-content-center position-relative" style="background: var(--primary-gradient); height: 220px;">
+                        {% if project.image %}
+                            <img src="{{ project.image }}" alt="{{ project.title }}" style="width: 100%; height: 100%; object-fit: cover;">
+                        {% else %}
+                            <div class="text-center">
+                                <i class="fas fa-laptop-code fa-4x mb-3" style="color: rgba(255, 255, 255, 0.8);"></i>
+                                <div class="h6 text-white opacity-75">{{ project.title }}</div>
+                            </div>
+                        {% endif %}
+
+                        {% if project.featured %}
+                            <div class="position-absolute top-0 end-0 m-3">
+                                <span class="badge" style="background: var(--secondary-gradient); padding: 8px 15px; border-radius: 20px; animation: featuredPulse 2s ease-in-out infinite;">
+                                    <i class="fas fa-star me-1"></i>Featured
+                                </span>
+                            </div>
+                        {% endif %}
+
+                        <div class="position-absolute bottom-0 start-0 m-3">
+                            <span class="badge" style="background: rgba(0, 0, 0, 0.5); padding: 8px 12px; border-radius: 15px; font-family: 'Orbitron', monospace;">
+                                #{{ forloop.counter|stringformat:"02d" }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <h5 style="background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-family: 'Orbitron', monospace;">
+                                {{ project.title }}
+                            </h5>
+                        </div>
+
+                        <p class="mb-3 opacity-75">{{ project.description|truncatewords:25 }}</p>
+
+                        <div class="mb-4">
+                            <small class="opacity-50 mb-2 d-block">Technologies Used:</small>
+                            <div class="d-flex flex-wrap gap-1">
+                                {% for tech in project.technologies|split:',' %}
+                                    <small class="badge tech-badge" style="background: rgba(255, 255, 255, 0.1); color: white; padding: 5px 10px; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.2); transition: all 0.3s ease;">
+                                        {{ tech }}
+                                    </small>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            {% if project.live_url %}
+                            <a href="{{ project.live_url }}" class="btn-3d btn-sm" target="_blank" style="padding: 10px 20px; font-size: 0.9rem; flex: 1; text-align: center;">
+                                <i class="fas fa-rocket me-1"></i> Launch
+                            </a>
+                            {% endif %}
+                            {% if project.github_url %}
+                            <a href="{{ project.github_url }}" class="btn-3d btn-sm" target="_blank" style="background: var(--dark-gradient); padding: 10px 20px; font-size: 0.9rem; flex: 1; text-align: center;">
+                                <i class="fab fa-github me-1"></i> Code
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="card-3d text-center py-5">
+                    <div class="mb-4">
+                        <i class="fas fa-rocket fa-5x" style="background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: rocketLaunch 3s ease-in-out infinite;"></i>
+                    </div>
+                    <h3 style="font-family: 'Orbitron', monospace;">Projects Launching Soon</h3>
+                    <p class="lead opacity-75 mb-4">Revolutionary projects are currently in development and will be deployed to this universe soon!</p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="{% url 'contact' %}" class="btn-3d">
+                            <i class="fas fa-bell me-2"></i>Get Notified
+                        </a>
+                        <a href="{% url 'home' %}#skills" class="btn-3d" style="background: var(--cyber-gradient);">
+                            <i class="fas fa-cogs me-2"></i>View Skills
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% if projects %}
+        <div class="text-center mt-5">
+            <div class="card-3d d-inline-block p-4">
+                <h4 class="mb-3" style="font-family: 'Orbitron', monospace;">Ready to Start Your Project?</h4>
+                <p class="opacity-75 mb-4">Let's collaborate and create something extraordinary that pushes the boundaries of technology!</p>
+                <a href="{% url 'contact' %}" class="btn-3d" style="padding: 15px 40px;">
+                    <i class="fas fa-rocket me-2"></i>Launch Your Idea
+                </a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<style>
+@keyframes featuredPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes rocketLaunch {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    25% { transform: translateY(-10px) rotate(-5deg); }
+    50% { transform: translateY(-20px) rotate(0deg); }
+    75% { transform: translateY(-10px) rotate(5deg); }
+}
+
+.tech-badge:hover {
+    background: var(--primary-gradient) !important;
+    transform: scale(1.1);
+}
+</style>
+{% endblock %}

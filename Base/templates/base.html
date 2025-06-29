@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sumit Upreti - Portfolio{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --cyber-gradient: linear-gradient(135deg, #00f5ff 0%, #ff00ff 100%);
+            --neon-gradient: linear-gradient(135deg, #39ff14 0%, #ff073a 100%);
+            --dark-gradient: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 100%);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-light: #ffffff;
+            --text-dark: #2d3748;
+            --shadow-3d: 0 20px 60px rgba(0, 0, 0, 0.3);
+            --neon-glow: 0 0 20px currentColor;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark-gradient);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+
+        /* Particle Background */
+        .particles-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: var(--dark-gradient);
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .particle:nth-child(odd) {
+            background: rgba(102, 126, 234, 0.2);
+            animation-delay: -2s;
+        }
+
+        .particle:nth-child(even) {
+            background: rgba(245, 87, 108, 0.2);
+            animation-delay: -4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+            25% { transform: translateY(-20px) rotate(90deg); opacity: 0.8; }
+            50% { transform: translateY(-40px) rotate(180deg); opacity: 0.5; }
+            75% { transform: translateY(-20px) rotate(270deg); opacity: 0.8; }
+        }
+
+        /* Cyber Grid Background */
+        .cyber-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background-image:
+                linear-gradient(rgba(0, 245, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 245, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            z-index: 1000;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .theme-btn {
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .theme-btn.cyber { background: var(--cyber-gradient); }
+        .theme-btn.neon { background: var(--neon-gradient); }
+        .theme-btn.default { background: var(--primary-gradient); }
+        .theme-btn.galaxy { background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%); }
+
+        .theme-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px currentColor;
+        }
+
+        /* Cyber Theme */
+        body.cyber-theme {
+            --primary-gradient: linear-gradient(135deg, #00f5ff 0%, #ff00ff 100%);
+            --secondary-gradient: linear-gradient(135deg, #00ff41 0%, #ff073a 100%);
+        }
+
+        body.cyber-theme .navbar-brand,
+        body.cyber-theme .section-title-3d {
+            text-shadow: 0 0 20px currentColor;
+            animation: neonPulse 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes neonPulse {
+            0% { text-shadow: 0 0 20px currentColor; }
+            100% { text-shadow: 0 0 30px currentColor, 0 0 40px currentColor; }
+        }
+
+        /* Neon Theme */
+        body.neon-theme {
+            --primary-gradient: linear-gradient(135deg, #39ff14 0%, #ff073a 100%);
+            --secondary-gradient: linear-gradient(135deg, #ffff00 0%, #ff00ff 100%);
+        }
+
+        body.neon-theme .card-3d,
+        body.neon-theme .project-card-3d {
+            box-shadow: 0 0 30px rgba(57, 255, 20, 0.3);
+        }
+
+        /* Galaxy Theme */
+        body.galaxy-theme {
+            --primary-gradient: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+            --secondary-gradient: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+            background: radial-gradient(ellipse at center, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+        }
+
+        body.galaxy-theme::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="white" opacity="0.8"/><circle cx="80" cy="30" r="0.5" fill="white" opacity="0.6"/><circle cx="40" cy="70" r="1.5" fill="white" opacity="0.9"/><circle cx="90" cy="80" r="0.8" fill="white" opacity="0.7"/><circle cx="10" cy="90" r="0.3" fill="white" opacity="0.5"/></svg>');
+            background-size: 200px 200px;
+            animation: starTwinkle 10s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes starTwinkle {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 0.3; }
+        }
+
+        /* Glass Morphism Navbar */
+        .glass-navbar {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            padding: 15px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-navbar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: navbarShine 3s ease-in-out infinite;
+        }
+
+        @keyframes navbarShine {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        .navbar-brand {
+            font-family: 'Orbitron', monospace;
+            font-weight: 900;
+            font-size: 1.8rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            animation: brandGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes brandGlow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3) drop-shadow(0 0 10px rgba(102, 126, 234, 0.5)); }
+        }
+
+        .nav-link {
+            color: var(--text-light) !important;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+            margin: 0 10px;
+            padding: 10px 20px !important;
+            border-radius: 25px;
+            overflow: hidden;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-gradient);
+            border-radius: 25px;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover::before,
+        .nav-link.active::before {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .nav-link:hover::after {
+            width: 100px;
+            height: 100px;
+        }
+
+        .nav-link:hover {
+            color: white !important;
+            transform: translateY(-2px);
+        }
+
+        /* 3D Cards with Enhanced Animations */
+        .card-3d {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.4s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .card-3d .btn-3d {
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-3d::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-gradient);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: -1;
+            pointer-events: none; /* Prevent blocking clicks */
+        }
+
+        .card-3d::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: cardRotate 10s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none; /* Prevent blocking clicks */
+        }
+
+        @keyframes cardRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .card-3d:hover {
+            transform: translateY(-20px) rotateX(5deg) rotateY(5deg);
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, 0.4),
+                0 0 50px rgba(102, 126, 234, 0.3);
+        }
+
+        .card-3d:hover::before {
+            opacity: 0.1;
+        }
+
+        .card-3d:hover::after {
+            opacity: 1;
+        }
+
+        /* Hero Section with Matrix Effect */
+        .hero-3d {
+            background: var(--primary-gradient);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .matrix-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            font-family: 'Orbitron', monospace;
+            font-size: 14px;
+            line-height: 14px;
+            color: #00ff41;
+            overflow: hidden;
+        }
+
+        .matrix-column {
+            position: absolute;
+            top: -100%;
+            animation: matrixFall 10s linear infinite;
+        }
+
+        @keyframes matrixFall {
+            0% { top: -100%; opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: heroTitleGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes heroTitleGlow {
+            0%, 100% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); }
+            50% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 255, 255, 0.5); }
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Floating Action Buttons */
+        .floating-actions {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .floating-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: floatingPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes floatingPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.2);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Enhanced 3D Buttons */
+        .btn-3d {
+            background: var(--secondary-gradient);
+            border: none;
+            border-radius: 50px;
+            padding: 15px 40px;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-3d::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: all 0.5s ease;
+        }
+
+        .btn-3d::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s ease;
+        }
+
+        .btn-3d:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            color: white;
+        }
+
+        .btn-3d:hover::before {
+            left: 100%;
+        }
+
+        .btn-3d:hover::after {
+            width: 200px;
+            height: 200px;
+        }
+
+        /* Project Cards with Holographic Effect */
+        .project-card-3d {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            height: 100%;
+            position: relative;
+        }
+
+        .project-card-3d::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: all 0.6s ease;
+            z-index: 1;
+        }
+
+        .project-card-3d:hover {
+            transform: translateY(-15px) rotateX(5deg);
+            box-shadow:
+                0 25px 60px rgba(0, 0, 0, 0.4),
+                0 0 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .project-card-3d:hover::before {
+            transform: translateX(100%);
+        }
+
+        /* Skill Progress with Neon Effect */
+        .skill-progress-3d {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 15px 0;
+            position: relative;
+        }
+
+        .skill-progress-bar-3d {
+            height: 100%;
+            background: var(--secondary-gradient);
+            border-radius: 10px;
+            transition: width 2s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(245, 87, 108, 0.5);
+        }
+
+        .skill-progress-bar-3d::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+            animation: skillShine 2s ease infinite;
+        }
+
+        @keyframes skillShine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* Section Titles with Hologram Effect */
+        .section-title-3d {
+            font-family: 'Orbitron', monospace;
+            font-size: 3rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 4rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            animation: titleHologram 4s ease-in-out infinite;
+        }
+
+        @keyframes titleHologram {
+            0%, 100% {
+                filter: brightness(1);
+                text-shadow: none;
+            }
+            25% {
+                filter: brightness(1.2);
+                text-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+            }
+            50% {
+                filter: brightness(1.4);
+                text-shadow: 0 0 30px rgba(102, 126, 234, 0.7);
+            }
+            75% {
+                filter: brightness(1.2);
+                text-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+            }
+        }
+
+        /* Enhanced Footer */
+        .footer-3d {
+            background: var(--dark-gradient);
+            border-top: 1px solid var(--glass-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-3d::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 30% 20%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(245, 87, 108, 0.1) 0%, transparent 50%);
+            animation: footerGlow 8s ease-in-out infinite;
+        }
+
+        @keyframes footerGlow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .social-link-3d {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link-3d::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--secondary-gradient);
+            transform: scale(0);
+            transition: all 0.3s ease;
+            border-radius: 50%;
+        }
+
+        .social-link-3d::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s ease;
+        }
+
+        .social-link-3d:hover {
+            transform: translateY(-10px) scale(1.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            color: white;
+        }
+
+        .social-link-3d:hover::before {
+            transform: scale(1);
+        }
+
+        .social-link-3d:hover::after {
+            width: 80px;
+            height: 80px;
+        }
+
+        /* Contact Form 3D */
+        .contact-form-3d {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--shadow-3d);
+        }
+
+        .form-control-3d {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            color: var(--text-light);
+            padding: 15px 20px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control-3d:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+            color: var(--text-light);
+        }
+
+        .form-control-3d::placeholder {
+            color: rgba(255, 255, 255, 0.2);
+        }
+        select.form-control-3d option {
+        color: #333333;
+        background-color: #fff;
+        }
+
+
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title-3d {
+                font-size: 2rem;
+            }
+
+            .theme-toggle {
+                right: 10px;
+                scale: 0.8;
+            }
+
+            .floating-actions {
+                bottom: 20px;
+                right: 20px;
+                scale: 0.8;
+            }
+        }
+
+        /* Typing Animation */
+        .typing-text {
+            font-family: 'Orbitron', monospace;
+            border-right: 3px solid;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { border-color: transparent; }
+            51%, 100% { border-color: currentColor; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle Background -->
+    <div class="particles-bg" id="particlesBg"></div>
+
+    <!-- Cyber Grid -->
+    <div class="cyber-grid"></div>
+
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <button class="theme-btn default" onclick="setTheme('default')" title="Default Theme">
+            <i class="fas fa-palette"></i>
+        </button>
+        <button class="theme-btn cyber" onclick="setTheme('cyber')" title="Cyber Theme">
+            <i class="fas fa-robot"></i>
+        </button>
+        <button class="theme-btn neon" onclick="setTheme('neon')" title="Neon Theme">
+            <i class="fas fa-bolt"></i>
+        </button>
+        <button class="theme-btn galaxy" onclick="setTheme('galaxy')" title="Galaxy Theme">
+            <i class="fas fa-star"></i>
+        </button>
+    </div>
+
+    <!-- Floating Actions -->
+    <div class="floating-actions">
+        <button class="floating-btn" onclick="scrollToTop()" title="Back to Top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
+
+    <!-- Glass Morphism Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top glass-navbar" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <i class="fas fa-code"></i> SUMIT UPRETI
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}#home">
+                            <i class="fas fa-home"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}#about">
+                            <i class="fas fa-user"></i> About
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}#projects">
+                            <i class="fas fa-laptop-code"></i> Projects
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}#skills">
+                            <i class="fas fa-cogs"></i> Skills
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact' %}">
+                            <i class="fas fa-envelope"></i> Contact
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Enhanced 3D Footer -->
+    <footer class="footer-3d">
+        <div class="footer-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 mb-4">
+                        <h4 class="mb-3" style="font-family: 'Orbitron', monospace; background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                            <i class="fas fa-code"></i> SUMIT UPRETI
+                        </h4>
+                        <p class="opacity-75">Passionate developer creating digital experiences that inspire and engage users worldwide. Let's build the future together!</p>
+                        <div class="mt-3">
+                            <span class="badge" style="background: var(--primary-gradient); padding: 8px 15px; border-radius: 20px;">
+                                <i class="fas fa-heart text-danger"></i> Available for Projects
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mb-4">
+                        <h5 class="mb-3" style="color: #fff;">Quick Navigation</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><a href="{% url 'home' %}#about" class="text-light text-decoration-none opacity-75 hover-opacity-100"><i class="fas fa-chevron-right me-2"></i>About Me</a></li>
+                            <li class="mb-2"><a href="{% url 'home' %}#projects" class="text-light text-decoration-none opacity-75 hover-opacity-100"><i class="fas fa-chevron-right me-2"></i>Projects</a></li>
+                            <li class="mb-2"><a href="{% url 'home' %}#skills" class="text-light text-decoration-none opacity-75 hover-opacity-100"><i class="fas fa-chevron-right me-2"></i>Skills</a></li>
+                            <li class="mb-2"><a href="{% url 'contact' %}" class="text-light text-decoration-none opacity-75 hover-opacity-100"><i class="fas fa-chevron-right me-2"></i>Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 mb-4">
+                        <h5 class="mb-3" style="color: #fff;">Get In Touch</h5>
+                        <div class="mb-2">
+                            <i class="fas fa-envelope me-2" style="color: #667eea;"></i>
+                            <span class="opacity-75">upretysumit@gmail.com</span>
+                        </div>
+                        <div class="mb-2">
+                            <i class="fas fa-phone me-2" style="color: #667eea;"></i>
+                            <span class="opacity-75">+977 9817925138</span>
+                        </div>
+                        <div class="mb-2">
+                            <i class="fas fa-map-marker-alt me-2" style="color: #667eea;"></i>
+                            <span class="opacity-75">Jhapa, Nepal</span>
+                        </div>
+                        <div class="mt-3">
+                            <small class="opacity-50">
+                                <i class="fas fa-clock me-1"></i>
+                                Response time: Usually within 24 hours
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="social-links-3d d-flex justify-content-center gap-3 my-4">
+                    <a href="https://github.com/Sumit46p" class="social-link-3d" title="GitHub" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/sumit-uprety-1b388735b/" class="social-link-3d" title="LinkedIn" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://www.instagram.com/ig_sumit14_/" class="social-link-3d" title="Instagram" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/sumit.upreti.90410" class="social-link-3d" title="Facebook" target="_blank">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="mailto:upretysumit@gmail.com" class="social-link-3d" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+
+                <hr style="border-color: var(--glass-border); margin: 40px 0 20px;">
+
+                <div class="text-center">
+                    <p class="mb-2 opacity-75">
+                        &copy; 2024 Sumit Upreti. All rights reserved. |
+                        Made with <i class="fas fa-heart text-danger"></i> and lots of <i class="fas fa-coffee"></i>
+                    </p>
+                    <small class="opacity-50">
+                        Designed with cutting-edge web technologies • Built for the future
+                    </small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeAnimations();
+        });
+
+        // Initialize Animations
+        function initializeAnimations() {
+            createParticles();
+            createMatrixEffect();
+            startTypingAnimation();
+        }
+
+        // Create Particles
+        function createParticles() {
+            const particlesBg = document.getElementById('particlesBg');
+            if (!particlesBg) return;
+
+            // Clear existing particles
+            particlesBg.innerHTML = '';
+
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.width = Math.random() * 4 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                particlesBg.appendChild(particle);
+            }
+        }
+
+        // Matrix Effect
+        function createMatrixEffect() {
+            const hero = document.querySelector('.hero-3d');
+            if (!hero) return;
+
+            // Check if matrix background already exists
+            let matrixBg = hero.querySelector('.matrix-bg');
+            if (!matrixBg) {
+                matrixBg = document.createElement('div');
+                matrixBg.className = 'matrix-bg';
+                hero.appendChild(matrixBg);
+            }
+
+            const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+            const columns = Math.floor(window.innerWidth / 20);
+
+            // Clear existing columns
+            matrixBg.innerHTML = '';
+
+            for (let i = 0; i < columns; i++) {
+                const column = document.createElement('div');
+                column.className = 'matrix-column';
+                column.style.left = i * 20 + 'px';
+                column.style.animationDelay = Math.random() * 10 + 's';
+                column.style.animationDuration = (Math.random() * 5 + 5) + 's';
+
+                let text = '';
+                for (let j = 0; j < 20; j++) {
+                    text += chars[Math.floor(Math.random() * chars.length)] + '<br>';
+                }
+                column.innerHTML = text;
+                matrixBg.appendChild(column);
+            }
+        }
+
+        // Typing Animation
+        function startTypingAnimation() {
+            const typingElements = document.querySelectorAll('.typing-text');
+            typingElements.forEach(element => {
+                const text = element.textContent;
+                element.textContent = '';
+                element.style.display = 'inline-block';
+
+                let i = 0;
+                const typeInterval = setInterval(() => {
+                    element.textContent += text[i];
+                    i++;
+                    if (i >= text.length) {
+                        clearInterval(typeInterval);
+                    }
+                }, 100);
+            });
+        }
+
+        // Theme System
+        function setTheme(theme) {
+            document.body.className = theme + '-theme';
+            localStorage.setItem('portfolio-theme', theme);
+
+            // Add theme change animation
+            document.body.style.transition = 'all 0.5s ease';
+            setTimeout(() => {
+                document.body.style.transition = '';
+            }, 500);
+        }
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('portfolio-theme') || 'default';
+        setTheme(savedTheme);
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('mainNavbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll to Top
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Intersection Observer for Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+
+                    // Animate skill bars
+                    const progressBar = entry.target.querySelector('.skill-progress-bar-3d');
+                    if (progressBar) {
+                        const percentage = progressBar.dataset.percentage;
+                        setTimeout(() => {
+                            progressBar.style.width = percentage + '%';
+                        }, 200);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.card-3d, .skill-card-3d, .project-card-3d').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s ease';
+                observer.observe(el);
+            });
+        });
+
+        // 3D Tilt Effect for Cards
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.card-3d, .project-card-3d').forEach(card => {
+                card.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    const rotateX = (y - centerY) / 10;
+                    const rotateY = (centerX - x) / 10;
+
+                    this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+                });
+            });
+        });
+
+        // Parallax Effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.particles-bg, .cyber-grid');
+            parallaxElements.forEach(element => {
+                const speed = 0.5;
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Easter Egg: Konami Code
+        let konamiCode = [];
+        const konamiSequence = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+
+        document.addEventListener('keydown', function(e) {
+            konamiCode.push(e.keyCode);
+            if (konamiCode.length > konamiSequence.length) {
+                konamiCode.shift();
+            }
+
+            if (konamiCode.join(',') === konamiSequence.join(',')) {
+                // Easter egg activated!
+                document.body.style.animation = 'rainbow 2s ease-in-out infinite';
+                setTimeout(() => {
+                    document.body.style.animation = '';
+                }, 10000);
+            }
+        });
+
+        // Add rainbow animation for easter egg
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes rainbow {
+                0% { filter: hue-rotate(0deg); }
+                100% { filter: hue-rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
