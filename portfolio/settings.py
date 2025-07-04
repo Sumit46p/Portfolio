@@ -3,11 +3,12 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'your-secret-key-here-change-this-in-production'
+SECRET_KEY = 'z9-2Lz_@7GV`u5FW#.U3mT!Wh^C#cLHnN%eT9^-N!s`TgA^eWc'
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['sumitupreti.com.np', 'www.sumitupreti.com.np']
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -77,6 +78,7 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     BASE_DIR / 'Base' / 'static',
 

@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: portfolio
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn your_project_name.wsgi:application
+    autoDeploy: true
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: portfolio.settings
+      - key: SECRET_KEY
+        value: your_production_secret_key
+      - key: DEBUG
+        value: False
