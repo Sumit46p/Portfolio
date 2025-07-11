@@ -2,13 +2,16 @@ services:
   - type: web
     name: portfolio
     env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn your_project_name.wsgi:application
+    plan: free
+    runtime: python-3.10.13  # 🔥 this is the key line
+    branch: main  # change if you're using a different branch
+    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate
+    startCommand: gunicorn portfolio.wsgi:application
     autoDeploy: true
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: portfolio.settings
       - key: SECRET_KEY
-        value: your_production_secret_key
+        value: z9-2Lz_@7GV`u5FW#.U3mT!Wh^C#cLHnN%eT9^-N!s`TgA^eWc
       - key: DEBUG
-        value: False
+        value: false
