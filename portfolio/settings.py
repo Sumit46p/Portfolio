@@ -7,7 +7,8 @@ SECRET_KEY = 'z9-2Lz_@7GV`u5FW#.U3mT!Wh^C#cLHnN%eT9^-N!s`TgA^eWc'
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['sumitupreti.com.np', 'www.sumitupreti.com.np']
+
+ALLOWED_HOSTS = ['sumitupreti.com.np', 'www.sumitupreti.com.np','.onrender.com']
 
 
 INSTALLED_APPS = [
@@ -83,6 +84,8 @@ STATICFILES_DIRS = [
     BASE_DIR / 'Base' / 'static',
 
 ]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
